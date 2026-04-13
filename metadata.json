@@ -1,0 +1,9 @@
+{
+  "name": "مَـدار AI - رفيق سفرك الذكي",
+  "description": "مساعد سفر ذكي يكتشف موقعك، يفهم مزاجك، ويقترح مسارات رحلات مخصصة باستخدام ذكاء Gemini الاصطناعي.",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone",
+    "camera"
+  ]
+}
