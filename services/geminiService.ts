@@ -1,11 +1,17 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import { Mood, GeminiResponse, PlaceRecommendation, BudgetInfo } from '../types';
 
-const apiKey = process.env.GEMINI_API_KEY || '';
+/**
+ * إعداد المفتاح للعمل على منصة Vercel
+ * تأكد أنك وضعت NEXT_PUBLIC_GEMINI_API_KEY في إعدادات البيئة (Environment Variables)
+ */
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 const ai = new GoogleGenAI({ apiKey });
 
-const MAIN_MODEL = "gemini-flash-latest"; 
-const TTS_MODEL = "gemini-2.5-flash-preview-tts";
+// استخدام النسخ الأكثر استقراراً لعام 2026 لضمان استمرارية الخدمة
+const MAIN_MODEL = "gemini-1.5-flash"; 
+const TTS_MODEL = "gemini-1.5-flash"; 
+const IMAGE_MODEL = "gemini-1.5-flash"; 
 
 /**
  * جلب بيانات الموقع والطقس باستخدام أدوات البحث
@@ -69,7 +75,7 @@ export const generateLocationImage = async (visualPrompt: string): Promise<strin
   if (!apiKey) return null;
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-image",
+      model: IMAGE_MODEL,
       contents: `${visualPrompt}, high quality, cinematic travel photography, 4k resolution, realistic lighting.`,
     });
     for (const part of response.candidates?.[0]?.content?.parts || []) {
